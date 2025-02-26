@@ -18,14 +18,14 @@ app.use(express.json());
 // }));
 
 
+
 app.use(
   cors({
-    origin: "https:whiteboard-frontend.netlify.app", 
-    methods: "GET,POST,PUT,DELETE",
-    credentials: true,
+    origin: "https://whiteboard-frontend.netlify.app", 
+    methods: ["GET", "POST", "PUT", "DELETE"], 
+    credentials: true, 
   })
 );
-
 // Import Routes
 const authRoutes = require("./routes/authRoutes");
 const inviteRoutes = require("./routes/invitationRoutes");
