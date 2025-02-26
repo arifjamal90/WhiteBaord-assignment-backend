@@ -20,7 +20,7 @@ app.use(express.json());
 
 app.use(
   cors({
-    origin: "whiteboard-frontend.netlify.app", 
+    origin: "https:whiteboard-frontend.netlify.app", 
     methods: "GET,POST,PUT,DELETE",
     credentials: true,
   })
