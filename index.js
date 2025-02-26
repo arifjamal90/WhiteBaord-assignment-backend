@@ -20,7 +20,7 @@ app.use(express.json());
 
 app.use(
   cors({
-    origin: "*", // Change "*" to your frontend domain for security
+    origin: "https://whitebaord-api.up.railway.app/api", 
     methods: "GET,POST,PUT,DELETE",
     credentials: true,
   })
