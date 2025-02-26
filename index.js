@@ -12,10 +12,19 @@ const server = http.createServer(app);
 const io = initializeSocket(server);
 
 app.use(express.json());
-app.use(cors({
-  origin: "http://localhost:3000", 
-  methods: ["GET", "POST", "PUT", "DELETE"], 
-}));
+// app.use(cors({
+//   origin: "http://localhost:3000", 
+//   methods: ["GET", "POST", "PUT", "DELETE"], 
+// }));
+
+
+app.use(
+  cors({
+    origin: "*", // Change "*" to your frontend domain for security
+    methods: "GET,POST,PUT,DELETE",
+    credentials: true,
+  })
+);
 
 // Import Routes
 const authRoutes = require("./routes/authRoutes");
