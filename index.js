@@ -13,7 +13,7 @@ const io = initializeSocket(server);
 
 app.use(express.json());
 app.use(cors({
-  origin: "https://whiteboard-frontend.netlify.app", 
+  origin: "*", 
   methods: ["GET", "POST", "PUT", "DELETE"], 
 }));
 
