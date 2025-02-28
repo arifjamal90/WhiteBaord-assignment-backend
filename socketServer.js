@@ -5,7 +5,7 @@ let users = {};
 const initializeSocket = (server) => {
   const io = new Server(server, {
     cors: {
-      origin: "*",
+      origin: "https://whiteboard-frontend.netlify.app",
       methods: ["GET", "POST"],
     },
   });
