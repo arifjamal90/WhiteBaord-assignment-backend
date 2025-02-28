@@ -12,6 +12,7 @@ const initializeSocket = (server) => {
 
 
   let texts = [];
+  let stickyNotes = [];
 
   io.on("connection", (socket) => {
     console.log(`🟢 User connected: ${socket.id}`);
@@ -29,9 +30,7 @@ const initializeSocket = (server) => {
       socket.broadcast.emit("receive-images", data);
     });
     socket.on("stickyNotes", (data) => {
-        console.log("stickyNotes", data)
       socket.broadcast.emit("revcieve-stickeyNotes", data);
-      console.log("stickyNotes", data);
       
     });
     socket.on("stickyNotes", (notes) => {
@@ -40,7 +39,6 @@ const initializeSocket = (server) => {
       });
   
     socket.on("updateStickyText", ({ id, newText }) => {
-        console.log("Sticky Notes After Update:", stickyNotes);
         stickyNotes = stickyNotes.map((note) =>
           note.id === id ? { ...note, text: newText } : note
         );
@@ -48,7 +46,6 @@ const initializeSocket = (server) => {
       });
 
     socket.on("deleteStickyNote", (id) => {
-        console.log("Sticky Notes After Delete:", stickyNotes); 
         stickyNotes = stickyNotes.filter((note) => note.id !== id);
         io.emit("stickyNotes", stickyNotes); 
       });
