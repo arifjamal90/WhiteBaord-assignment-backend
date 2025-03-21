@@ -50,6 +50,7 @@ const initializeSocket = (server) => {
         io.emit("stickyNotes", stickyNotes); 
       });
 
+        
     //   socket.emit("addText", texts);
 
     //   socket.on("addText", (updatedTexts) => {

@@ -17,6 +17,7 @@ exports.signup = async (req, res) => {
     if (!allowedRoles.includes(role)) {
       return res.status(400).json({ message: "Invalid role provided" });
     }
+console.log(allowedRoles,"allowedRoles");
 
     // Check if user already exists
     const userExists = await User.findOne({ email });
@@ -37,10 +38,17 @@ exports.signup = async (req, res) => {
     // Generate a JWT token
     const payload = { id: user._id, name: user.name, role: user.role };
     const token = jwt.sign(payload, process.env.JWT_SECRET, {
-      expiresIn: "1h",
+      expiresIn: "2h",
     });
-
     res.status(201).json({
+      success: true,
+      message: "User registered successfully",
+      token,
+      user,
+     
+    });
+    console.log({
+      success: true,
       message: "User registered successfully",
       token,
       user,
@@ -50,6 +58,8 @@ exports.signup = async (req, res) => {
   }
 };
 
+
+
 // Signin Route
 exports.signin = async (req, res) => {
   const { email, password } = req.body;
@@ -58,7 +68,6 @@ exports.signin = async (req, res) => {
     if (!user) {
       return res.status(400).json({ message: "User not found" });
     }
-    console.log(user,"dfuguyf")
 
     // Compare password with hashed password
     const isMatch = await bcrypt.compare(password, user.password);
